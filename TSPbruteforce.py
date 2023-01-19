@@ -51,7 +51,7 @@ def brute_force(node_array):
     
     print("Best permutation = ", bestPerm)
 
-    return bestPerm
+    return bestPerm, bestLength
 
 def calculateLength(distance_matrix, permutation):
     print("current perm: ",permutation)
@@ -69,8 +69,21 @@ def calculateLength(distance_matrix, permutation):
 
 def main():
     fig = plt.figure()
-    brute_force(create_distance_matrix(create_nodes(4)))
 
+    node_array = create_nodes(6)
+
+    bestPerm, bestLength = brute_force(create_distance_matrix(node_array))
+
+    x_values = []
+    y_values = []
+
+    for i in range(len(bestPerm)):
+        x_values.append(node_array[bestPerm[i]][0])
+        y_values.append(node_array[bestPerm[i]][1])
+    
+    plt.plot(x_values, y_values, "bo-")
+    plt.title(str("Distance: "+str(bestLength)))
+            
     plt.grid()
     plt.show()
 
